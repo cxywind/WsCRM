@@ -1,0 +1,45 @@
+﻿
+<h2>Order Management <small>Hi, 每一天一个脚印！</small></h2>
+<p>
+    <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#createEdit" ng-click="createOrder()">
+        New Order
+    </button>
+</p>
+<table class="table table-hover">
+    <tr>
+        <th>Domain</th>
+        <th>Phone</th>
+        <th>Total</th>
+        <th>Status</th>
+        <th>Date</th>
+        <th>Product</th>
+        <th>Description</th>
+        <th>Opration</th>
+    </tr>
+
+    <tr ng-repeat="p in orders">
+        <td><span editable-text="p.Domain" e-name="Domain" e-form="rowform" onbeforesave="checkName($data, p.OrderId)">{{$index + 1}}. {{p.Domain}}</span></td>
+        <td><span editable-text="p.QQ" e-name="QQ" e-form="rowform">{{p.Phone}}</span></td>
+        <td><span editable-text="p.Total" e-name="Total" e-form="rowform">{{p.Total | currency : '￥'}}</span></td>
+        <td><span editable-select="p.OrderStatus.value" e-name="OrderStatus" e-form="rowform" e-ng-options="s.value as s.text for s in orderStatus">{{p.OrderStatus.text}}</span></td>
+        <td><span editable-date="p.OrderDate" e-name="OrderDate" e-form="rowform">{{p.OrderDate | date:"dd/MM/yyyy"}}</span></td>
+        <td><span editable-text="p.ProductName" e-name="ProductName" e-form="rowform">{{p.ProductName}}</span></td>
+        <td><span editable-text="p.Description" e-name="Description" e-form="rowform">{{p.Description}}</span></td>
+        <td class="col-md-2">
+            <form editable-form name="rowform" onbeforesave="saveProduct($data, p.ProductId)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="!p.created">
+                <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
+                    save
+                </button>
+                <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
+                    cancel
+                </button>
+            </form>
+            <div class="buttons" ng-show="!rowform.$visible">
+                <button class="btn btn-primary" ng-click="rowform.$show()">Edit</button>
+                <button class="btn btn-primary"  data-toggle="modal" data-target="#createEdit" ng-click="showDetail(p.OrderId)">Detail</button>
+                <button class="btn btn-danger" ng-click="deleteProduct(p.ProductId)">Del</button>
+            </div>  
+        </td>
+    </tr>
+</table>
+<c-modal></c-modal>

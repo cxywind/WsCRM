@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEBSUN CRM</title>
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
+    <link href="/Content/xeditable.css" rel="stylesheet">
+    <link href="/Content/wscrm.css" rel="stylesheet" />
+    <script src="/scripts/jquery-1.10.2.js"></script>
+    <script src="/scripts/angular.min.js"></script>
+    <script src="/scripts/angular-route.js"></script>
+    <script src="/scripts/xeditable.js"></script>
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">WEBSUN CRM</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/index.html#/orders">Orders</a></li>
+                    <li><a href="/index.html#/products">Products</a></li>
+                    <li><a href="/index.html#/system">System</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content" ng-app="wsCRM">
+        <div ng-view>
+
+        </div>
+        <hr />
+        <footer>
+            <p>&copy; - Websun CRM</p>
+        </footer>
+    </div>
+
+    <script src="/scripts/bootstrap.js"></script>
+    <script src="/App/wscrm.module.js"></script>
+    <script src="/App/wscrm.config.js"></script>
+    <script src="/App/common/services/utils.js"></script>
+    <script src="/App/common/validation.js"></script>
+    <script src="/App/home/home.js"></script>
+    <script src="/App/home/home-component.js"></script>
+    <script src="/App/products/products.js"></script>
+    <script src="/App/products/products-component.js"></script>
+    <script src="/App/orders/orders.js"></script>
+    <script src="/App/orders/orders-component.js"></script>
+    <script src="/App/modal/modal.js"></script>
+    <script src="/App/modal/modal-component.js"></script>
+</body>
+</html>

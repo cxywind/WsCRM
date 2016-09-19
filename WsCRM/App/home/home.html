@@ -1,0 +1,32 @@
+﻿<h2 class="text-center">WebSun CRM</h2>
+<div class="container">
+    <div class="form-horizontal well col-md-6">
+        <form editable-form name="loginForm" ng-show="loginForm.$visible" onaftersave="saveUser()" shown="true">
+            <div class="form-group">
+                <label for="UserName" class="col-md-3 col-sm-3">User Name</label>
+                <div class="col-md-9 col-sm-9">
+                    <span editable-text="user.UserName" e-name="UserName" e-form-validation="{{item.validateon}}" e-class="form-control" e-required>{{ item.value || 'empty' }}</span>
+                    <span class="text-danger" ng-show="modalForm[item.variableName].$error.formValidation">{{item.validateon.errorText}}</span>
+                    <span class="text-success glyphicon glyphicon-ok" ng-hide="modalForm[item.variableName].$error.formValidation || !formShown || !modalForm[item.variableName].$dirty"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="UserName" class="col-md-3 col-sm-3">Password</label>
+                <div class="col-md-9 col-sm-9">
+                    <span editable-password="user.UserName" e-name="UserName" e-form-validation="{{item.validateon}}" e-class="form-control" e-required>{{ item.value || 'empty' }}</span>
+                    <span class="text-danger" ng-show="modalForm[item.variableName].$error.formValidation">{{item.validateon.errorText}}</span>
+                    <span class="text-success glyphicon glyphicon-ok" ng-hide="modalForm[item.variableName].$error.formValidation || !formShown || !modalForm[item.variableName].$dirty"></span>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <span ng-show="loginForm.$visible">
+                    <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
+                        Login
+                    </button>
+
+                </span>
+            </div>
+        </form>
+    </div>
+</div>

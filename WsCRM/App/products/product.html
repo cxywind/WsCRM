@@ -1,0 +1,39 @@
+﻿
+<h2>Product Management</h2>
+<p>
+    <button type="button" class="btn btn-primary btn-md" ng-click="addProduct()">
+        Add Product
+    </button>
+</p>
+<table class="table table-hover">
+    <tr>
+        <th> Product Id </th>
+        <th>  Product Name </th>
+        <th>  Price </th>
+        <th> Renew Price </th>
+        <th> Operation </th>
+    </tr>
+
+    <tr ng-repeat="p in products">
+        <td class="col-md-1"> 
+            <span>{{p.ProductId}}</span>
+        </td>
+        <td class="col-md-3"><span editable-text="p.ProductName" onbeforesave="checkProductName($data)" e-name="ProductName" e-form="rowform">{{p.ProductName}}</span></td>
+        <td class="col-md-3"><span editable-number="p.Price"  onbeforesave="checkPrice($data)"  e-name="Price" e-form="rowform">{{p.Price}}</span></td>
+        <td class="col-md-3"><span editable-number="p.RenewPrice"  onbeforesave="checkRenewPrice($data)"  e-name="RenewPrice" e-form="rowform">{{p.RenewPrice}}</span></td>
+        <td class="col-md-2">
+            <form editable-form name="rowform" ng-show="rowform.$visible"  onaftersave="saveProduct($data, p.ProductId)" onhide="cancelEmptyProduct()" class="form-buttons form-inline" shown="!p.created">
+                <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
+                    save
+                </button>
+                <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()"  class="btn btn-default">
+                    cancel
+                </button>
+            </form>
+            <div class="buttons" ng-show="!rowform.$visible">
+                <button class="btn btn-primary" ng-click="rowform.$show()">Edit</button>
+                <button class="btn btn-danger" ng-click="deleteProduct(p.ProductId)">Delete</button>
+            </div>  
+        </td>
+    </tr>
+</table>
