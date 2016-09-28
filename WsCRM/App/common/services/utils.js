@@ -28,6 +28,12 @@
             });
         };
 
+        //get a singe item form an list
+        utilsFactory.getObjectByAttr = function (array, attr,value) {
+            return array[utilsFactory.findObjectIndexInArray(array, attr, value)];
+        }
+
+
         utilsFactory.findObjectIndexInArray = function (array, attr, value) {
             for (var i = 0; i < array.length; i++) {
                 if (array[i][attr] == value) {

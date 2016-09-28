@@ -44,14 +44,14 @@
           //Prepare one single order value to Modal
           $scope.toModalObject = function (order) {
               var orderToModal = [
-                      { title: 'Domain', variableName: 'Domain', value: (order ?  order.Domain : ''), type: 'text', validateon: { minLen:2, errorText:'* 请输入正确的域名' } },
-                      {title: 'Email', variableName: 'Email', value: (order ?  order.Email : ''), type: 'email' },
+                      { title: 'Domain', variableName: 'Domain', value: (order ?  order.Domain : ''), type: 'text', validation: { minLen:2, errorText:'* 请输入正确的域名' } },
+                      { title: 'Email', variableName: 'Email', value: (order ? order.Email : ''), type: 'email', validation: { required: true, errorText: '*请输入邮箱' }},
                       {title: 'Phone', variableName: 'Phone', value: (order ?  order.Phone : ''), type: 'tel' },
-                      { title: 'QQ', variableName: 'QQ', value: (order ?  order.QQ : ''), type: 'text', validateon: { minLen: 2, maxLen:10, errorText: '* 请输入正确的QQ' } },
-                      {title: 'Order Status', variableName: 'OrderStatus', value: (order ?  order.OrderStatus : 0), type: 'select', selectEnum: $scope.orderStatus },
+                      { title: 'QQ', variableName: 'QQ', value: (order ?  order.QQ : ''), type: 'text', validation: { minLen: 2, maxLen:10, errorText: '* 请输入正确的QQ' } },
+                      {title: 'Order Status', variableName: 'OrderStatus', value: (order ?  order.OrderStatus : 1), type: 'select', selectEnum: $scope.orderStatus },
                       {title: 'Order Date', variableName: 'OrderDate', value: (order ?  order.OrderDate :  new Date()), type: 'date' },
                       { title: 'Marketing Way', variableName: 'MarketingWay', value:  (order ?  order.MarketingWay : 0) , type: 'select', selectEnum: $scope.marketingWay },
-                      {title:'Product Name', variableName: 'ProductName', value:  (order ?  order.ProductName :  ''), type: 'text' },
+                      {title:'Product Name', variableName: 'ProductName', value:  (order ?  order.ProductName :  ''), type: 'text', regExpVaid: {text: 'Email格式不正确', reg: /^\s*\w*\s*$/ } },
                       { title: 'Description', variableName: 'Description', value:  (order ?  order.Description :  ''), type: 'textarea' }
               ];
               
@@ -65,7 +65,8 @@
                   modalTitle: 'Create Order',
                   controller: 'orders', 
                   action: 'create',
-                  idVariable: 'OrderId', 
+                  idVariable: 'OrderId',
+                  idValue:'12'
               };
 
               $scope.$broadcast('showModelEvent', [$scope.toModalObject(order), modalOption]);
@@ -81,11 +82,19 @@
                   controller: 'orders', // corrsponding to .net controller
                   action: 'index', // index, edit and create, corrsponding to .net backend action
                   idVariable: 'OrderId', // Id variale 
-                  id: id// the id of the entity, when create new, keep empty
+                  idValue: '12' // the id of the entity, when create new, keep empty
               };
 
               $scope.$broadcast('showModelEvent', [$scope.toModalObject(order), modalOption]);
           };
+
+          $scope.$on('modelDone', function (event, data) {
+              if (data) {
+                  console.log('Success');
+              } else {
+                  console.log('error');
+              }
+          });
          
           //$scope.deleteProduct = function (id) {
           //    alert("您没有删除产品的权限");
