@@ -52,7 +52,7 @@
                       data[$scope.modalOption.idVariable] = $scope.modalOption.idValue;
                   }
 
-                  utils.postApiData(uri, data).then(function (respone) {
+                  utils.postApiData(uri, data, $scope.modalOption.httpPostConfig).then(function (respone) {
                       $scope.$emit('modelDone', respone); //通知上层component, 已经完成保存，请刷新数据
                   });
               }

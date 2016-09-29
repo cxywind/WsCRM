@@ -17,9 +17,9 @@
             });
         };
 
-        utilsFactory.postApiData = function (uri, data) {
+        utilsFactory.postApiData = function (uri, data, config) {
 
-            return $http.post(uri, data).then(
+            return $http.post(uri, data, config).then(
                 function success(response) {
                     return [response, true];
             },

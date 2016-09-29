@@ -82,7 +82,13 @@
                   controller: 'orders', // corrsponding to .net controller
                   action: 'index', // index, edit and create, corrsponding to .net backend action
                   idVariable: 'OrderId', // Id variale 
-                  idValue: '12' // the id of the entity, when create new, keep empty
+                  idValue: '12', // the id of the entity, when create new, keep empty
+                  httpPostConfig: {
+                      headers: {
+                          'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+                      }
+                  }
+                  // setting config option for $http.post();
               };
 
               $scope.$broadcast('showModelEvent', [$scope.toModalObject(order), modalOption]);
