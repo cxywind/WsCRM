@@ -89,7 +89,8 @@
           };
 
           $scope.$on('modelDone', function (event, data) {
-              if (data) {
+              if (data[1]) {
+                  console.log(data[0]);  // data[0] populate the response from server
                   console.log('Success');
               } else {
                   console.log('error');
